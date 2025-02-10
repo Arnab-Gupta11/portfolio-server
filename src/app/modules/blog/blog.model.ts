@@ -11,15 +11,15 @@ const blogSchema = new Schema<TBlog>(
       type: String,
       required: true,
     },
-    author: {
-      type: Schema.Types.ObjectId,
+    image: {
+      type: String,
       required: true,
-      ref: 'User',
     },
-    isPublished: {
-      type: Boolean,
-      default: true,
+    category: {
+      type: String,
+      required: true,
     },
+
   },
   { timestamps: true, versionKey: false },
 );

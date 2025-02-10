@@ -5,13 +5,12 @@ import sendResponse from '../../utils/sendResponse';
 
 //Creat a new Blog.
 const createBlog = catchAsync(async (req: Request, res: Response) => {
-  const result = await BlogServices.createBlogIntoDB(req.user, req.body);
-  const { _id, title, content, author } = result;
+  const result = await BlogServices.createBlogIntoDB(req.body);
   sendResponse(res, {
     statusCode: 201,
     success: true,
     message: 'Blog created successfully',
-    data: { _id, title, content, author },
+    data: result,
   });
 });
 
@@ -29,14 +28,13 @@ const getAllBlogs = catchAsync(async (req: Request, res: Response) => {
 //Update a blog
 const updateBlog = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await BlogServices.updateBlogIntoDB(id, req.user, req.body);
+  const result = await BlogServices.updateBlogIntoDB(id, req.body);
   if (result) {
-    const { _id, title, content, author } = result;
     sendResponse(res, {
       statusCode: 200,
       success: true,
       message: 'Blog updated successfully',
-      data: { _id, title, content, author },
+      data: result,
     });
   }
 });
@@ -44,7 +42,7 @@ const updateBlog = catchAsync(async (req: Request, res: Response) => {
 //Delete a blog
 const deleteBlog = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await BlogServices.deleteBlogFromDB(id, req.user);
+  const result = await BlogServices.deleteBlogFromDB(id);
   if (result) {
     res.status(200).json({
       success: true,

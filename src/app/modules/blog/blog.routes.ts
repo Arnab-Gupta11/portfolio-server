@@ -9,7 +9,6 @@ const router = Router();
 router
   .route('/')
   .post(
-    auth('user'),
     validateRequest(BlogValidations.createBlogValidationSchema),
     BlogControllers.createBlog,
   )
@@ -17,7 +16,6 @@ router
 router
   .route('/:id')
   .patch(
-    auth('user'),
     validateRequest(BlogValidations.updateBlogValidationSchema),
     BlogControllers.updateBlog,
   )
