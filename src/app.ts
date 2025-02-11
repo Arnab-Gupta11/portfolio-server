@@ -6,7 +6,14 @@ import cors from 'cors';
 const app: Application = express();
 //Middleware to parse incoming JSON request
 app.use(express.json());
-app.use(cors({ origin: ['http://localhost:3000'] }));
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3000',
+      'https://portfolio-client-mocha.vercel.app',
+    ],
+  }),
+);
 
 //Application Routes
 app.use('/api/v1', router);
@@ -15,7 +22,7 @@ app.use('/api/v1', router);
 app.get('/', (req: Request, res: Response) => {
   res.json({
     status: true,
-    message: 'Blog App Server Live',
+    message: 'Portfolio Server Live ⚡',
   });
 });
 
