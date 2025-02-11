@@ -36,13 +36,17 @@ const updateBlogValidationSchema = z.object({
       })
       .min(1, 'Content cannot be empty')
       .optional(),
-    author: z
+    image: z
       .string({
-        required_error: 'Author ID is required',
+        required_error: 'Image is required',
       })
-      .regex(/^[0-9a-fA-F]{24}$/, 'Invalid author ID format')
       .optional(),
-    isPublished: z.boolean().optional(),
+    category: z
+      .string({
+        required_error: 'Category is required',
+      })
+      .min(1, 'Content cannot be empty')
+      .optional(),
   }),
 });
 export const BlogValidations = {

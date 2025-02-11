@@ -1,14 +1,15 @@
 import { Router } from 'express';
 import { BlogRoutes } from '../modules/blog/blog.routes';
 import { ProjectRouters } from '../modules/project/project.routes';
+import { MessageRoutes } from '../modules/message/message.routes';
 
 const router = Router();
 
 const moduleRoutes = [
-  // {
-  //   path: '/auth',
-  //   route: AuthRoutes,
-  // },
+  {
+    path: '/message',
+    route: MessageRoutes,
+  },
   {
     path: '/blogs',
     route: BlogRoutes,

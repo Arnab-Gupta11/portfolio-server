@@ -10,13 +10,18 @@ const createBlogIntoDB = async (payload: TBlog) => {
 };
 
 //Get All blog from DB
-const getAllCourseFromDB = async (query: Record<string, unknown>) => {
+const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
   const blogQuery = new QueryBuilder(Blog.find(), query)
     .search(searchableFields)
     .filter()
     .sort()
     .sortOrder();
   const result = await blogQuery.modelQuery;
+  return result;
+};
+
+const getSingleBlogFromDB = async (id: string) => {
+  const result = await Blog.findById(id);
   return result;
 };
 
@@ -38,7 +43,8 @@ const deleteBlogFromDB = async (id: string) => {
 };
 export const BlogServices = {
   createBlogIntoDB,
-  getAllCourseFromDB,
+  getAllBlogsFromDB,
+  getSingleBlogFromDB,
   updateBlogIntoDB,
   deleteBlogFromDB,
 };

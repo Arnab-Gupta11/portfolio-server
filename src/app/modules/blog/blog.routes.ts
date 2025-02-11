@@ -2,7 +2,6 @@ import { Router } from 'express';
 import validateRequest from '../../middlewares/validateRequest';
 import { BlogValidations } from './blog.validation';
 import { BlogControllers } from './blog.controller';
-import auth from '../../middlewares/auth';
 
 const router = Router();
 
@@ -19,5 +18,6 @@ router
     validateRequest(BlogValidations.updateBlogValidationSchema),
     BlogControllers.updateBlog,
   )
-  .delete(auth('user'), BlogControllers.deleteBlog);
+  .delete(BlogControllers.deleteBlog)
+  .get(BlogControllers.getSingleBlog);
 export const BlogRoutes = router;

@@ -16,11 +16,22 @@ const createBlog = catchAsync(async (req: Request, res: Response) => {
 
 //Get all blogs
 const getAllBlogs = catchAsync(async (req: Request, res: Response) => {
-  const result = await BlogServices.getAllCourseFromDB(req.query);
+  const result = await BlogServices.getAllBlogsFromDB(req.query);
   sendResponse(res, {
     statusCode: 200,
     success: true,
     message: 'Blogs fetched successfully',
+    data: result,
+  });
+});
+// Get a single project
+const getSingleBlog = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await BlogServices.getSingleBlogFromDB(id);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Blog fetched successfully',
     data: result,
   });
 });
@@ -57,4 +68,5 @@ export const BlogControllers = {
   getAllBlogs,
   updateBlog,
   deleteBlog,
+  getSingleBlog,
 };
